@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.product.server.dao.TestMapperDao" >
+    <resultMap id="BaseResultMap" type="com.example.common.entity.UserYYY" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="code" property="code" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="state" property="state" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="selectByPrimaryKey" resultType="com.example.product.server.bean.Test">
+        select id, name, new_money from test where id = #{id}
+    </select>
+
+    <select id="getTestById" resultType="java.lang.String">
+        select user_name from sys_user where id = #{id}
+    </select>
+
+    <select id="getUserById" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select id as id,
+          user_code as code,
+          user_name as name,
+          user_password as password,
+          user_state as state
+         from sys_user where id = #{id}
+    </select>
+
+</mapper>

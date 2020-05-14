@@ -1,0 +1,38 @@
+server:
+  port: 8761
+spring:
+#  cloud:
+#    loadbalancer:
+#      retry:
+#        enabled: false  #禁止使用负载均衡 因为只有一个消防端
+  datasource:
+    url: jdbc:mysql://localhost:3306/crm?useUnicode=true&characterEncoding=UTF-8&useSSL=FALSE&serverTimezone=GMT%2b8
+#    url: jdbc:mysql://192.168.8.168:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root123
+    password: admin123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+ribbon:
+  eureka:
+    enabled: true
+eureka:
+  environment: dev
+  instance:
+    preferIpAddress: true
+    #用于定义服务失效时间 默认90秒
+    lease-expiration-duration-in-seconds: 60
+    #用于定义服务续约任务的调用间隔时间默认15秒
+    lease-renewal-interval-in-seconds: 15
+    #注册中心的IP地址
+    hostname: localhost
+  server:
+  #是否保护机制 是
+    enable-self-preservation: true
+  client:
+    register-with-eureka: false #false表示不向注册中心注册自己。
+    fetch-registry: false  #false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务
+    registry-fetch-interval-seconds: 5
+    serviceUrl:
+    #设置与Eureka Server交互的地址查询服务和注册服务都需要依赖这个地址。
+    #      http://127.0.0.1:8761/eureka
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
