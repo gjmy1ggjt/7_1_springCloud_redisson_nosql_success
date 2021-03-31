@@ -138,7 +138,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>28.0-jre</version>
+            <version>29.0-jre</version>
         </dependency>
 
         <!-- 分布式事物 5.0比较好 4.0旧版本屏蔽 -->
